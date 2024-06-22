@@ -29,6 +29,10 @@ export default {
         }
     },
 
+    mounted() {
+
+    },
+
     methods: {
         addPerson() {
             axios.post('/api/people', { name: this.name, age: this.age, job: this.job })
@@ -36,7 +40,7 @@ export default {
                     this.name = null;
                     this.age = null;
                     this.job = null;
-                    console.log(res.data);
+                    this.$parent.$refs.index.getPeople();
                 });
         }
     }

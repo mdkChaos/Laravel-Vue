@@ -2,7 +2,7 @@
     <div>
         Persons
         <CreateComponent></CreateComponent>
-        <IndexComponent></IndexComponent>
+        <IndexComponent ref="index"></IndexComponent>
         <!-- <table class="table">
             <thead>
                 <tr>
@@ -38,22 +38,11 @@ export default {
     },
 
     mounted() {
-        this.getPersons();
+
     },
 
     methods: {
-        getPersons() {
-            axios.get('/persons')
-                .then(data => {
-                    this.persons = data.data;
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-                .finally({
 
-                });
-        },
     },
 
     components: {
