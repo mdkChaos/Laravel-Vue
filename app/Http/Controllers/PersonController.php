@@ -15,6 +15,12 @@ class PersonController extends Controller
         return $people;
     }
 
+    public function show(Person $person): Person
+    {
+
+        return $person;
+    }
+
     public function store(StoreRequest $request): Person
     {
         $data = $request->validated();
