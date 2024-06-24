@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Person\StoreRequest;
 use App\Http\Requests\Person\UpdateRequest;
+use App\Http\Resources\Person\PersonResource;
 use App\Models\Person;
+use Illuminate\Http\Response;
 
 class PersonController extends Controller
 {
@@ -12,29 +14,28 @@ class PersonController extends Controller
     {
         $people = Person::all();
 
-        return $people;
+        return PersonResource::collection($people);
     }
 
-    public function show(Person $person): Person
+    public function show(Person $person): PersonResource
     {
-
-        return $person;
+        return new PersonResource($person);
     }
 
-    public function store(StoreRequest $request): Person
+    public function store(StoreRequest $request): Response
     {
         $data = $request->validated();
-        $person = Person::create($data);
+        Person::create($data);
 
-        return $person;
+        return response([]);
     }
 
-    public function update(UpdateRequest $request, Person $person)
+    public function update(UpdateRequest $request, Person $person): Response
     {
         $data = $request->validated();
         $person->update($data);
 
-        return $person;
+        return response([]);
     }
 
     public function delete(Person $person)
